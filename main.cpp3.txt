@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include "MathVectorTest.h"
+
+int main(int argc, const char * argv[]) {
+    
+    // Check that the correct number of arguments have been provided
+    if (argc != 1) {
+        std::cout << "Usage: " << argv[0] << "\n";
+        return EXIT_FAILURE;
+    }
+    
+    // Run the test suite
+    MathVectorTest tester;
+    tester.runTests( );
+    std::string result = tester.getTestResultsString( );
+    
+    // Print only failed tests
+    if (result.find("FAILED") != std::string::npos) {
+        std::cout << "Beginning tests.\n" << result << "Tests complete.\n";
+    } else {
+        std::cout << "All tests passed.\n";
+    }
+    
+    return EXIT_SUCCESS;
+}

@@ -1,0 +1,66 @@
+#include "MathVectorTest.h"
+
+MathVectorTest::MathVectorTest( ) : constructor(false), readElements(false), toString(false) {
+}
+
+void MathVectorTest::runTests() {
+    bool result;
+    results << "Beginning tests." << std::endl;
+
+    // Test constructor
+    result = constructorTest();
+    constructor = !result;
+    if(!result)
+        results << "UNIT TEST FAILED: Constructor" << std::endl;
+    else
+        results << "Constructor: PASSED" << std::endl;
+
+    // Test readElements
+    result = readElementsTest(3, "1.0, 2.0, 3.0", "");
+    readElements = !result;
+    if(!result)
+        results << "UNIT TEST FAILED: readElements" << std::endl;
+    else
+        results << "readElements: PASSED" << std::endl;
+
+    // Test toString
+    result = toStringTest();
+    toString = !result;
+    if(!result)
+        results << "UNIT TEST FAILED: toString" << std::endl;
+    else
+        results << "toString: PASSED" << std::endl;
+
+    results << "Tests complete." << std::endl;
+}
+
+bool MathVectorTest::constructorTest() {
+    MathVector v(3);
+    for (int i = 0; i < 3; i++) {
+        if (v[i] != 0.0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool MathVectorTest::readElementsTest(int numElements, std::string elementsString, std::string statusString) {
+    MathVector v(numElements);
+    bool result = v.readElements(elementsString);
+    if(v.getStatus() != statusString)
+        return false;
+    return result;
+}
+
+bool MathVectorTest::toStringTest() {
+    MathVector v(3);
+    v[0] = 1.0;
+    v[1] = 2.0;
+    v[2] = 3.0;
+    std::string s = v.toString();
+    return (s == "1.000000 2.000000 3.000000");
+}
+
+std::string MathVectorTest::getTestResultsString() {
+    return results.str();
+}

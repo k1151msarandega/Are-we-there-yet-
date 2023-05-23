@@ -1,0 +1,24 @@
+class Input : public MathVector {
+public:
+    Input(int n) : MathVector(n), v(0), deltaDot(0) {}
+
+    double getV() const {
+        return v;
+    }
+
+    void setV(double value) {
+        v = value;
+    }
+
+    double getDeltaDot() const {
+        return deltaDot;
+    }
+
+    void setDeltaDot(double value) {
+        deltaDot = value;
+    }
+
+private:
+    double v;
+    double deltaDot;
+};

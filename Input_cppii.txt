@@ -1,0 +1,72 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+class MathVector {
+public:
+    MathVector(int n) : values(n, 0.0) {}
+    MathVector(std::string str) {
+        std::stringstream ss(str);
+        std::vector<double> vals;
+        std::string val;
+        while (std::getline(ss, val, ',')) {
+            try {
+                vals.push_back(std::stod(val));
+            } catch (const std::exception& e) {
+                std::cout << "Unable to read element " << vals.size() + 1 << " of [" << str << "] (expected " << values.size() << " elements)" << std::endl;
+                return;
+            }
+        }
+        if (vals.size() != values.size()) {
+            std::cout << "Unable to read line [" << str << "] (expected " << values.size() << " elements)" << std::endl;
+            return;
+        }
+        values = vals;
+    }
+    void printValues() const {
+        std::cout << "[";
+        for (int i = 0; i < values.size(); i++) {
+            std::cout << std::fixed << std::setprecision(3) << values[i];
+            if (i < values.size() - 1) {
+                std::cout << ",";
+            }
+        }
+        std::cout << "]" << std::endl;
+    }
+    double getValue(int index) const {
+        if (index < 0 || index >= values.size()) {
+            std::cout << "Invalid index: " << index << std::endl;
+            return 0.0;
+        }
+        return values[index];
+    }
+    bool setValue(int index, double value) {
+        if (index < 0 || index >= values.size()) {
+            std::cout << "Invalid index: " << index << std::endl;
+            return false;
+        }
+        values[index] = value;
+        return true;
+    }
+protected:
+    std::vector<double> values;
+};
+
+class Input : public MathVector {
+public:
+    Input(int n) : MathVector(n) {}
+    Input(std::string str) : MathVector(str) {}
+    double getV() const {
+        return getValue(0);
+    }
+    bool setV(double value) {
+        return setValue(0, value);
+    }
+    double getDeltaDot() const {
+        return getValue(1);
+    }
+    bool setDeltaDot(double value) {
+        return setValue(1, value);
+    }
+};

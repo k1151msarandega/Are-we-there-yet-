@@ -1,0 +1,48 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+class MathVector {
+public:
+    MathVector(int num_elements) : values(num_elements) {}
+
+    void print_vector() const {
+        std::cout << std::fixed;
+        std::cout.precision(3);
+        for (int i = 0; i < values.size(); i++) {
+            std::cout << values[i];
+            if (i != values.size() - 1) {
+                std::cout << ",";
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    bool read_vector(std::string input_string) {
+        std::stringstream ss(input_string);
+        std::string element;
+        int i = 0;
+        while (std::getline(ss, element, ',')) {
+            if (i >= values.size()) {
+                std::cout << "Unable to read line [" << input_string << "] (more than " << values.size() << " elements)" << std::endl;
+                return false;
+            }
+            try {
+                values[i] = std::stod(element);
+            } catch (std::invalid_argument& e) {
+                std::cout << "Unable to read element " << i + 1 << " of [" << input_string << "] (expected " << values.size() << " elements)" << std::endl;
+                return false;
+            }
+            i++;
+        }
+        if (i != values.size()) {
+            std::cout << "Unable to read element " << i + 1 << " of [" << input_string << "] (expected " << values.size() << " elements)" << std::endl;
+            return false;
+        }
+        return true;
+    }
+
+private:
+    std::vector<double> values;
+};

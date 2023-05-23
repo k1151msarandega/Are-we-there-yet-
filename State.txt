@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+#include "MathVector.h"
+
+class State : public MathVector {
+public:
+    State() : MathVector(4) {
+        x = 0.0;
+        y = 0.0;
+        delta = 0.0;
+        theta = 0.0;
+    }
+    
+    void setX(double new_x) {
+        x = new_x;
+        set(0, x);
+    }
+    
+    void setY(double new_y) {
+        y = new_y;
+        set(1, y);
+    }
+    
+    void setDelta(double new_delta) {
+        delta = new_delta;
+        set(2, delta);
+    }
+    
+    void setTheta(double new_theta) {
+        theta = new_theta;
+        set(3, theta);
+    }
+    
+    double getX() const {
+        return x;
+    }
+    
+    double getY() const {
+        return y;
+    }
+    
+    double getDelta() const {
+        return delta;
+    }
+    
+    double getTheta() const {
+        return theta;
+    }
+    
+private:
+    double x;
+    double y;
+    double delta;
+    double theta;
+};

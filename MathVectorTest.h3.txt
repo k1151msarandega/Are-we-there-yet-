@@ -1,0 +1,26 @@
+#ifndef MathVectorTest_h
+#define MathVectorTest_h
+
+#include <stdio.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include "MathVector.h"
+
+class MathVectorTest {
+public:
+    MathVectorTest( );
+    void runTests( );
+    std::string getTestResultsString( );
+    bool constructorTest( );
+    bool readElementsTest( int numElements, std::string elementsString, std::string statusString );
+    bool toStringTest( );
+
+private:
+    bool constructor;
+    bool readElements;
+    bool toString;
+    std::stringstream results;
+};
+
+#endif /* MathVectorTest_h */
