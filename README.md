@@ -1,6 +1,6 @@
 # Are We There Yet?
 
-A **car-like robot motion simulator** that models kinematic behavior based on input files describing vehicle dynamics and control inputs.
+A **car-like robot motion simulator** that models kinematic behaviour based on input files describing vehicle dynamics and control inputs.
 
 ## Overview
 
@@ -17,7 +17,7 @@ This project simulates the path and state evolution of a vehicle (such as an aut
 
 - Models a car's motion using kinematic equations with steering angle and velocity constraints
 - Supports variable timestep simulation
-- Produces CSV output compatible with MATLAB visualization
+- Produces CSV output compatible with MATLAB visualisation
 - Robust error handling and validation
 
 ## Quick Start
@@ -85,4 +85,4 @@ Where:
 
 ## Validation
 
-A MATLAB visualization script is included to validate results by plotting the vehicle's path and animating the simulation.
+A MATLAB visualisation script is included to validate results by plotting the vehicle's path and animating the simulation.
